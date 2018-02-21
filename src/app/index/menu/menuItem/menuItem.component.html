@@ -1,0 +1,15 @@
+<ng-container *ngIf="hasChilds(); else elseTemplate">
+  <li nz-submenu>
+    <span title>
+      <i class="anticon {{item.permission.iconClass}}"></i>
+      <span class="nav-text">{{item.permission.nameRecord}}</span>
+    </span>
+    <ul>
+      <app-menuItem *ngFor="let item of item.childs" [item]="item"></app-menuItem>
+    </ul>
+  </li>
+</ng-container>
+
+<ng-template #elseTemplate>
+  <li nz-menu-item>{{item.permission.nameRecord}}</li>
+</ng-template>

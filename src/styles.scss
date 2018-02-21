@@ -1,0 +1,17 @@
+@import 'font-awesome/css/font-awesome.css';
+@import './variables.scss';
+.anticon:before {
+    font-family: FontAwesome !important;
+}
+
+.fa {
+    &.anticon {
+        &:before {
+            font-family: FontAwesome !important;
+        }
+    }
+}
+
+.ant-table-tbody>tr>td {
+    padding: 4px 2px!important;
+}

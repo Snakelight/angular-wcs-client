@@ -1,0 +1,12 @@
+<mat-list-item (click)="opened = !opened" class="app-menu-item">
+    <mat-icon>{{item.Icon}}</mat-icon>
+    <mat-icon  class="fa" fontIcon="fa-close"></mat-icon>
+    <span style="flex:1">{{item.Title}}</span>
+    <mat-icon [@rotate]="opened" *ngIf="item.Childs">keyboard_arrow_down</mat-icon>
+</mat-list-item>
+<div [@expand]="opened">
+    <ng-container *ngIf="item.Childs && opened">
+        <app-menu-item *ngFor="let item of item.Childs" [item]="item"></app-menu-item>
+    </ng-container>
+</div>
+<div></div>

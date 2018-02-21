@@ -1,0 +1,59 @@
+<nz-layout class="wrapper">
+    <nz-header class="header">
+        <i class="anticon trigger" style="cursor:pointer" [class.anticon-menu-fold]="!menuIsCollapsed" [class.anticon-menu-unfold]="menuIsCollapsed"
+            (click)="menuIsCollapsed=!menuIsCollapsed"></i>
+    </nz-header>
+
+    <nz-sider nzCollapsible [(nzCollapsed)]="menuIsCollapsed" [nzTrigger]="null" class="side">
+        <app-menu [collapsed]="menuIsCollapsed"></app-menu>
+    </nz-sider>
+    <nz-content class="content">
+
+        <button nz-button [nzType]="'default'" (click)="addSomeItemQuantity()">
+            <span>добавить рандомный</span>
+        </button>
+
+        <nz-input [(ngModel)]="barcode"></nz-input>
+        <button nz-button [nzType]="'default'" (click)="addItemByBarcode(barcode)">
+            <span>добавить {{barcode}}</span>
+        </button>
+        <div>total records count: {{data.length}}</div>
+        <div>visible records count: {{visibleItems.length}}</div>
+        <div>last added : {{lastAdded | json}}</div>
+        <table>
+            <virtual-scroll [items]="data" [childHeight]="43" (update)="visibleItems = $event">
+                <tbody>
+                    <tr *ngFor="let item of visibleItems">
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.barcode}}</td>
+                        <td>{{item.price}}</td>
+                        <td>{{item.quantity}}</td>
+                    </tr>
+                </tbody>
+            </virtual-scroll>
+        </table>
+        <!-- 
+        <table>
+            <thead>
+                <th>Код</th>
+                <th>Наименование</th>
+                <th>ШК</th>
+                <th>Цена</th>
+                <th>Количество</th>
+            </thead>
+            <virtual-scroll [items]="data" [childHeight]="43" (update)="visibleItems = $event">
+                <tbody>
+                    <tr *ngFor="let item of visibleItems">
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.barcode}}</td>
+                        <td>{{item.price}}</td>
+                        <td>{{item.quantity}}</td>
+                    </tr>
+                </tbody>
+            </virtual-scroll>
+        </table> -->
+        <router-outlet></router-outlet>
+    </nz-content>
+</nz-layout>
